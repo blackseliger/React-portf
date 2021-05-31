@@ -8,7 +8,8 @@ import { fetchCatalogFailure, fetchCatalogSuccess } from './actionCreators';
 
 export const catalog = action$ => action$.pipe(
     ofType(FETCH_CATALOG_REQUEST),
-    exhaustMap(() => ajax.getJSON(`${process.env.REACT_APP_API_URL}/categories`).pipe(
+    exhaustMap(() => ajax.getJSON(`${process.env.REACT_APP_API_URL}/items`).pipe(
+        // exhaustMap(() => ajax.getJSON(`${process.env.REACT_APP_API_URL}/categories`).pipe(
         retry(5),
         map((o) => fetchCatalogSuccess(o)),
         catchError((e) => of(fetchCatalogFailure)),
