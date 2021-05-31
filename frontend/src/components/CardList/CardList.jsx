@@ -7,7 +7,8 @@ function CardList({items}) {
     return (
         <div className="row">
         {items.map((o) => (
-          <div className="col-4" key={o.id}>
+          <div className="col-4 d-flex align-items-stretch" key={o.id}>
+            {/* выровнил при варианте разных размеров изображений */}
             <Card item={o} />
           </div>
         ))}

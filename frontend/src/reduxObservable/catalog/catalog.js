@@ -1,9 +1,9 @@
+import { FETCH_TOPSALES_REQUEST, FETCH_TOPSALES_SUCCESS } from '../topsales/actionTypes';
 import {
-    FETCH_TOPSALES_SUCCESS,
-    FETCH_TOPSALES_REQUEST,
-    FETCH_TOPSALES_FAILURE,
-} from '../actions/actionTypes';
-
+    FETCH_CATALOG_FAILURE,
+    FETCH_CATALOG_REQUEST,
+    FETCH_CATALOG_SUCCESS,
+} from './actionTypes';
 
 const initialState = {
     items: [],
@@ -11,31 +11,30 @@ const initialState = {
     error: null,
 };
 
-
-export default function topSalesReducer(state = initialState, action) {
+export default function catalogReducer(state = initialState, action) {
     switch (action.type) {
-        case FETCH_TOPSALES_REQUEST:
+        case FETCH_CATALOG_REQUEST: 
             return {
                 ...state,
                 loading: true,
                 error: null,
-            };
-        case FETCH_TOPSALES_SUCCESS:
-            const { items } = action.payload;
+        };
+        case FETCH_CATALOG_SUCCESS:
+            const { items } = action.payload; 
             return {
                 ...state,
                 items,
                 loading: false,
-                error: null,
+                error: null, 
             }
-        case FETCH_TOPSALES_FAILURE:
+        case FETCH_CATALOG_FAILURE:
             const { error } = action.payload;
             return {
                 ...state,
                 loading: false,
                 error,
             }
-        default:
+        default: 
             return state;
     }
 }

@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Image from '../Image/Image';
+
 
 function Card({item}) {
     const {category, title, price, images, id} = item;
     return (
         <div className="card">
-            <img src={images[0]} className="card-img-top img-fluid" alt={title}/>
+            <Image title={title} images={images}/>
                 <div className="card-body">
                     <p className="card-text">{title}</p>
                     <p className="card-text">{price} руб.</p>
@@ -15,9 +17,18 @@ function Card({item}) {
     )
 }
 
-Card.propTypes = {
 
-}
+Card.propTypes = {
+    item: PropTypes.shape({
+      category: PropTypes.number,
+      images: PropTypes.arrayOf(PropTypes.string).isRequired,
+      title: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      id: PropTypes.number.isRequired,
+    }).isRequired,
+  };
+  
+
 
 export default Card
 

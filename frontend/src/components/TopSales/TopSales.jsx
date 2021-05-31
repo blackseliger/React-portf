@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch} from 'react-redux';
-import { fetchTopSalesRequest } from './actions/actionCreators';
 import CardList from '../CardList/CardList';
+import { fetchTopSalesRequest } from '../../reduxObservable/topsales/actionCreators';
+
 
 
 function TopSales(props) {
@@ -17,9 +18,9 @@ function TopSales(props) {
     return (
         <>
         {!error && (
-            <section class="top-sales">
-            <h2 class="text-center">Хиты продаж!</h2>
-            { loading ? <div class="preloader">
+            <section className="top-sales">
+            <h2 className="text-center">Хиты продаж!</h2>
+            { loading ? <div className="preloader">
                 <span></span>
                 <span></span>
                 <span></span>
