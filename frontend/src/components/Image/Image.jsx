@@ -2,8 +2,26 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 
+const wrapperStyle = {
+    width: '100%',
+    height: '0',
+    position: 'relative',
+    overflow: 'hidden',
+    paddingBottom: '170%', // ratio
+  };
+  
+  const imgStyle = {
+    position: 'absolute',
+    left: '-50%',
+    top: '-50%',
+    right: '-50%',
+    bottom: '-50%',
+    heigth: 'auto',
+    width: '100%',
+    margin: 'auto',
+  };
 
-function Image({title, images }) {
+function Image({ title, images }) {
 
     const [actualIndex, setActualIndex] = useState(0);
 
@@ -22,12 +40,16 @@ function Image({title, images }) {
     return (
         <>
           {images.length && (
-                <img src={images[actualIndex]} 
+              <div style={wrapperStyle}>
+                    <img src={images[actualIndex]} 
                     alt={title} 
-                    // className="card-img-top img-fluid "
+                    style={imgStyle}
+                    className="card-img-top img-fluid" 
+                    // не работает?........
                     onMouseEnter={handleMouseNext}
                     onMouseLeave={handleMousePrev}
               />
+            </div>
           )}  
         </>
     )

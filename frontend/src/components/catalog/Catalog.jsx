@@ -4,13 +4,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchCatalogRequest } from '../../reduxObservable/catalog/actionCreators';
 import CardList from '../CardList/CardList';
 
+
+
 function Catalog(props) {
     const { items, loading, error } = useSelector((state) => state.catalog);
     const dispatch = useDispatch();
 
+    const catalogStyle = 'card catalog-item-card'
+
+// стили для каталога, без них ломается список
     useEffect(() => {
         dispatch(fetchCatalogRequest());
-        console.log(items);
     }, [dispatch]);
 
     return (
@@ -18,7 +22,7 @@ function Catalog(props) {
         {!error && (
             <section className="catalog">
                 <h2 className="text-center">Каталог</h2>
-                 <CardList items={items}></CardList>
+                 <CardList items={items} catalogStyle={catalogStyle}></CardList>
             </section>
         )}
         </> 

@@ -1,12 +1,12 @@
 import { combineEpics } from 'redux-observable';
-import catalogReducer from './catalog/catalog';
+import { catalog } from './catalog';
 import { topSalesfetchRequest } from './topsales';
 
 
 
  const epic = combineEpics(
     topSalesfetchRequest,
-    catalogReducer,
+    catalog,
 );
 
 

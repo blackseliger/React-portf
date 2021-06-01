@@ -3,18 +3,24 @@ import PropTypes from 'prop-types'
 import Image from '../Image/Image';
 
 
-function Card({item}) {
+function Card({item, cataLogStyle}) {
     const {category, title, price, images, id} = item;
+    console.log(cataLogStyle);
     return (
-        <div className="card">
+        <div className={cataLogStyle}>
+            {/* catalog-item-card ломает хит продаж но чиним каталог */}
             <Image title={title} images={images}/>
                 <div className="card-body">
-                    <p className="card-text">{title}</p>
+                    <p className="card-text" style={{minHeight: '3em'}}>{title}</p>
                     <p className="card-text">{price} руб.</p>
                     <a href="/products/1.html" className="btn btn-outline-primary">Заказать</a>
                 </div> 
         </div>
     )
+}
+
+Card.defaultProps = {
+    cataLogStyle: 'card',
 }
 
 

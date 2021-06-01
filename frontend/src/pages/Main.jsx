@@ -6,7 +6,7 @@ export default function Main() {
     return (
         <>  
         <TopSales></TopSales>
-        {/* <Catalog></Catalog> */}
+        <Catalog></Catalog>
         </>
     )
 }
