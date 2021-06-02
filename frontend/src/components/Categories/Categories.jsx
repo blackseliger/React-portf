@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategoriesRequest } from '../../reduxObservable/categories/actionCreators';
 import { Link } from 'react-router-dom';
-
+import { actualCategoriesID } from '../../reduxObservable/catalog/actionCreators';
 
 function Categories(props) {
     const { items, loading, error } = useSelector((state) => state.categories);
@@ -15,6 +15,9 @@ function Categories(props) {
 
 
     const handleClick = (categoryId) => {
+        
+        // dispatch(actualCategoriesID(categoryId))
+        console.log(categoryId);
         props.onClick(categoryId)
     }
  
@@ -35,7 +38,7 @@ function Categories(props) {
 }
 
 Categories.propTypes = {
-
+    onClick: PropTypes.func,
 }
 
 export default Categories

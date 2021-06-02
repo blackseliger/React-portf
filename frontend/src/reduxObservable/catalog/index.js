@@ -11,8 +11,12 @@ export const catalog = action$ => action$.pipe(
     ofType(FETCH_CATALOG_REQUEST),
     exhaustMap((category) => {
         const categoryID = category.payload && category.payload.categoryId;
+        const offSet = category.payload && category.payload.offSet;
+        const q = category.payload && category.payload.q;
         const urlParams = new URLSearchParams();
         if (categoryID) urlParams.set('categoryId', categoryID);
+        if (offSet) urlParams.set('offset', offSet);
+        if (q) urlParams.set('q', q);
         return ajax.getJSON(`${process.env.REACT_APP_API_URL}/items?${urlParams.toString()}`).pipe(
             retry(5),
             map((o) => fetchCatalogSuccess(o)),

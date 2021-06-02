@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch} from 'react-redux';
 import CardList from '../CardList/CardList';
 import { fetchTopSalesRequest } from '../../reduxObservable/topsales/actionCreators';
+import Loader from '../Loader/Loader';
 
 
 
@@ -20,12 +21,7 @@ function TopSales(props) {
         {!error && (
             <section className="top-sales">
             <h2 className="text-center">Хиты продаж!</h2>
-            { loading ? <div className="preloader">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div> : <CardList items={items}></CardList>}
+            { loading ? <Loader/> : <CardList items={items}></CardList>}
         </section>
         )}
         </>

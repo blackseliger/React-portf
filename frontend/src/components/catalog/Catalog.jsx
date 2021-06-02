@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchCatalogRequest } from '../../reduxObservable/catalog/actionCreators';
+import { actualCategoriesID, fetchCatalogRequest } from '../../reduxObservable/catalog/actionCreators';
 import CardList from '../CardList/CardList';
 import Categories from '../Categories/Categories';
-
-
+import Loader from '../Loader/Loader';
+import Search from '../Search/Search';
+import { searchChangeInput } from '../../reduxObservable/search/actionCreators';
+// import { actualCategoriesID } from '../../reduxObservable/categories/actionCreators';
 
 function Catalog(props) {
-    const { items, loading, error } = useSelector((state) => state.catalog);
+    const { items, loading, error, actualCount, id } = useSelector((state) => state.catalog);
+    const { searchStr, visibility } = useSelector((state) => state.search);
+    const [actualCategory, setActualCategory] = useState();
     const dispatch = useDispatch();
 
     const catalogStyle = 'card catalog-item-card'
@@ -19,27 +23,64 @@ function Catalog(props) {
 
 
     const handleClick = (categoryId) => {
-        categoryId !== undefined ? console.log(categoryId) : console.log('All');
+        setActualCategory(categoryId);
+        dispatch(actualCategoriesID(actualCategory));
+        // приходит с опозданием без useState
+        console.log(id);
         dispatch(fetchCatalogRequest({
-            categoryId,
+            categoryId: categoryId,
         }))
-        // console.log(categoryId);
     }
+
+    const handleMore = () => {
+        dispatch(fetchCatalogRequest({
+            categoryId: actualCategory,
+            offSet: items.length,
+        }))
+    }
+
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        dispatch(fetchCatalogRequest({
+            categoryId: actualCategory,
+            q: searchStr.trim(),
+        }))
+    }
+
+    const handleChange = (evt) => {
+        dispatch(searchChangeInput(evt.target.value));
+    };
+ 
+    // const classNameSearchCatalog = 'catalog-search-form form-inline';
+
 
     return (
         <>
-        {!error && (
             <section className="catalog">
                 <h2 className="text-center">Каталог</h2>
-                 <Categories onClick={handleClick}></Categories>
-                 <CardList items={items} catalogStyle={catalogStyle}></CardList>
+                {!visibility && (
+                    <form className="catalog-search-form form-inline" onSubmit={handleSubmit}>
+                    <input className="form-control" placeholder="Поиск" value={searchStr} onChange={handleChange} />
+                  </form>
+                )}
+                 <Categories onClick={handleClick}/>
+                 {loading && <Loader/>}
+                 <CardList items={items} catalogStyle={catalogStyle}/>
+                 {((!loading && !error) && (items.lenght === 0)) && (<h2 className='text-center'>Ничего не найдено</h2>)}
+                 {(!loading && !error) && (actualCount === 6) && (
+                    //  если пришло меньше 6, кнопка исчезает
+                     <div className='text-center'>
+                         <button type='button' className='btn btn-outline-primary' onClick={handleMore}>Загрузить ещё</button>
+                     </div>
+                 )}
             </section>
-        )}
         </> 
     )
 }
 
 Catalog.propTypes = {
+    
 
 }
 

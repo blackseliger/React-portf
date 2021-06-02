@@ -1,8 +1,9 @@
-import { FETCH_CATALOG_FAILURE } from '../catalog/actionTypes';
+
 import {
     FETCH_CATEGORIES_FAILURE,
     FETCH_CATEGORIES_REQUEST,
     FETCH_CATEGORIES_SUCCESS,
+    // ACTUAL_CATEGORIES_ID,
 } from './actionTypes';
 
 export const fetchCategoriesRequest = () => ({
@@ -18,3 +19,9 @@ export const fetchCategoriesSuccess = (items) => ({
         items,
     } 
 })
+
+// export const actualCategoriesID = (id) => ({
+//     type: ACTUAL_CATEGORIES_ID, payload: {
+//         id
+//     }
+// })

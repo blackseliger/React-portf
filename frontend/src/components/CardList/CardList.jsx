@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 import Card from '../Card/Card'
 
 function CardList({items, catalogStyle}) {
-    console.log(items);
-    console.log(catalogStyle)
     return (
         <div className="row">
         {items.map((o) => (
