@@ -23,7 +23,7 @@ function Categories(props) {
     return (
         <ul className="catalog-categories nav justify-content-center">
             <li className="nav-item">
-                <Link className='nav-link' to='#'>Все</Link>
+                <Link className='nav-link' to='#' onClick={() => handleClick()}>Все</Link>
             </li>
             {items.map((category) =>(
                 <li className='nav-item' key={category.id}>
