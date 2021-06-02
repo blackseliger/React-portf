@@ -6,12 +6,17 @@ import { FETCH_CATALOG_REQUEST } from './actionTypes';
 import { fetchCatalogFailure, fetchCatalogSuccess } from './actionCreators';
 
 
+
 export const catalog = action$ => action$.pipe(
     ofType(FETCH_CATALOG_REQUEST),
-    exhaustMap(() => ajax.getJSON(`${process.env.REACT_APP_API_URL}/items`).pipe(
-        // exhaustMap(() => ajax.getJSON(`${process.env.REACT_APP_API_URL}/categories`).pipe(
-        retry(5),
-        map((o) => fetchCatalogSuccess(o)),
-        catchError((e) => of(fetchCatalogFailure)),
-    ))
+    exhaustMap((category) => {
+        const categoryID = category.payload && category.payload.categoryId;
+        const urlParams = new URLSearchParams();
+        if (categoryID) urlParams.set('categoryId', categoryID);
+        return ajax.getJSON(`${process.env.REACT_APP_API_URL}/items?${urlParams.toString()}`).pipe(
+            retry(5),
+            map((o) => fetchCatalogSuccess(o)),
+            catchError((e) => of(fetchCatalogFailure(e))),
+        );
+    })
 );

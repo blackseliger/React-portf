@@ -1,4 +1,3 @@
-import { FETCH_TOPSALES_FAILURE } from '../topsales/actionTypes';
 import {
     FETCH_CATALOG_FAILURE,
     FETCH_CATALOG_REQUEST,
@@ -7,8 +6,8 @@ import {
 
 // FETCH
 
-export const fetchCatalogRequest = () => ({
-    type: FETCH_CATALOG_REQUEST,
+export const fetchCatalogRequest = (payload) => ({
+    type: FETCH_CATALOG_REQUEST, payload,
 });
 
 export const fetchCatalogFailure = (error) => ({

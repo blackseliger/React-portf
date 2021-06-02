@@ -1,8 +1,8 @@
-
+import { FETCH_CATALOG_REQUEST } from '../catalog/actionTypes';
 import {
-    FETCH_CATALOG_FAILURE,
-    FETCH_CATALOG_REQUEST,
-    FETCH_CATALOG_SUCCESS,
+    FETCH_CATEGORIES_FAILURE,
+    FETCH_CATEGORIES_REQUEST,
+    FETCH_CATEGORIES_SUCCESS,
 } from './actionTypes';
 
 const initialState = {
@@ -11,30 +11,30 @@ const initialState = {
     error: null,
 };
 
-export default function catalogReducer(state = initialState, action) {
+export default function categoriesReducer(state = initialState, action) {
     switch (action.type) {
-        case FETCH_CATALOG_REQUEST: 
+        case FETCH_CATEGORIES_REQUEST:
             return {
                 ...state,
                 loading: true,
                 error: null,
-        };
-        case FETCH_CATALOG_SUCCESS:
-            const { items } = action.payload; 
+            };
+        case FETCH_CATEGORIES_SUCCESS:
+            const { items } = action.payload;
             return {
                 ...state,
                 items,
                 loading: false,
-                error: null, 
+                error: null,
             }
-        case FETCH_CATALOG_FAILURE:
+        case FETCH_CATEGORIES_FAILURE:
             const { error } = action.payload;
             return {
                 ...state,
                 loading: false,
                 error,
             }
-        default: 
+        default:
             return state;
     }
 }
