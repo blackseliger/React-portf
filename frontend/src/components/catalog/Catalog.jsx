@@ -25,7 +25,9 @@ function Catalog(props) {
     const handleClick = (categoryId) => {
         setActualCategory(categoryId);
         dispatch(actualCategoriesID(actualCategory));
-        // приходит с опозданием без useState
+        // приходит с опозданием если юзать любые стейты, быстро работает с исходным аргументом handleClick
+        // способ перекидывать categoryId в стейт и потом вытаскивать его и юзать fetchCatalogRequest плохо работает
+        // fetchCatalogRequest берет из стейта состояние которое еще не успело обновится.. нужно понять как исправлять ситуацию
         console.log(id);
         dispatch(fetchCatalogRequest({
             categoryId: categoryId,

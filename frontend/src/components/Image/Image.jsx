@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 
-const wrapperStyle = {
+const divStyle = {
     width: '100%',
     height: '0',
     position: 'relative',
     overflow: 'hidden',
-    paddingBottom: '170%', // ratio
+    paddingBottom: '160%',
   };
   
   const imgStyle = {
@@ -40,7 +40,7 @@ function Image({ title, images }) {
     return (
         <>
           {images.length && (
-              <div style={wrapperStyle}>
+              <div style={divStyle}>
                     <img src={images[actualIndex]} 
                     alt={title} 
                     style={imgStyle}
