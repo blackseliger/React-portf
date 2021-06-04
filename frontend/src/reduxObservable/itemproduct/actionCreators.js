@@ -2,6 +2,8 @@ import {
     FETCH_ITEM_PRODUCT_FAILURE,
     FETCH_ITEM_PRODUCT_REQUEST,
     FETCH_ITEM_PRODUCT_SUCCESS,
+    ITEM_PRODUCT_QUANTITY,
+    ITEM_PRODUCT_SELECTED,
 } from './actionTypes';
 
 export const fetchItemProductRequest = (id) => ({
@@ -17,3 +19,16 @@ export const fetchItemProductSuccess = (items) => ({
         items,
     }
 })
+
+export const itemProductSelected = (index) => ({
+    type: ITEM_PRODUCT_SELECTED, payload: {
+        index,
+    }
+});
+
+export const itemProductQuantity = (amount) => ({
+    type: ITEM_PRODUCT_QUANTITY, payload: {
+        amount,
+    }
+});
+

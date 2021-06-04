@@ -2,12 +2,16 @@ import {
     FETCH_ITEM_PRODUCT_FAILURE,
     FETCH_ITEM_PRODUCT_SUCCESS,
     FETCH_ITEM_PRODUCT_REQUEST,
+    ITEM_PRODUCT_SELECTED,
+    ITEM_PRODUCT_QUANTITY,
 } from './actionTypes';
 
 const initialState = {
-    items: [],
+    items: null,
     loading: false,
     error: null,
+    selected: 0,
+    quantity: 1,
 }
 
 export default function itemProductReducer(state = initialState, action) {
@@ -32,6 +36,18 @@ export default function itemProductReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 error,
+            }
+        case ITEM_PRODUCT_SELECTED: 
+            const { index } = action.payload;
+            return {
+                ...state,
+                selected: index,
+            }
+        case ITEM_PRODUCT_QUANTITY: 
+            const { amount } = action.payload;
+            return {
+                ...state,
+                quantity: amount,
             }
         default: 
             return state;

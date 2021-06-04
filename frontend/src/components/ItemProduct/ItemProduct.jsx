@@ -1,21 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchItemProductRequest } from '../../reduxObservable/itemproduct/actionCreators';
+import { fetchItemProductRequest, itemProductQuantity, itemProductSelected } from '../../reduxObservable/itemproduct/actionCreators';
 import Loader from '../Loader/Loader';
+import Sizes from '../Sizes/Sizes';
+import Quantity from '../Quantity/Quantity';
 
 function ItemProduct({productID}) {
-    const { items , loading, error } = useSelector((state) => state.itemProduct);
+    const { items, loading, error, selected, quantity } = useSelector((state) => state.itemProduct);
     console.log(productID);
+    console.log(items);
+
     // console.log(items.images[0]);
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(fetchItemProductRequest(productID));
-        console.log(items);
+        // console.log(items);
+        return () => {};
     }, [dispatch, productID]);
 
-    const product_params = [
+    const handleSize = (actualSizeIndx) => itemProductSelected(actualSizeIndx);
+
+    const handleIncrease = () => dispatch(itemProductQuantity(quantity + 1))
+    const handleReduce = () => dispatch(itemProductQuantity(quantity === 0 ? 0 : quantity - 1))
+
+
+
+    const product_params = items !== null && [
     {
         key: items.sku,
         name: 'Артикул'
@@ -37,7 +49,7 @@ function ItemProduct({productID}) {
         name: 'Сезон',
     },
     {
-        key: 'Прогулка',
+        key: items.reason,
         name: 'Повод',
     }
 ]
@@ -48,7 +60,7 @@ function ItemProduct({productID}) {
         <section classNameName="catalog-item">
                 {(loading || error ) && <Loader/>}
                 {/* добавить заглушку если ошибка, типа " Ой что то сломалось, обновите" */}
-                {(!loading && !error ) &&
+                {(!loading && !error && items) &&
                 <>
                         <h2 className="text-center">{items.title}</h2>
                         <div className="row">
@@ -68,13 +80,15 @@ function ItemProduct({productID}) {
                                     </tbody>
                                 </table>
                                 <div className="text-center">
-                                    <p>Размеры в наличии: <span className="catalog-item-size selected">18 US</span> <span className="catalog-item-size">20 US</span></p>
-                                    <p>Количество: <span className="btn-group btn-group-sm pl-2">
+                                    <Sizes data={items.sizes} onClick={handleSize} selected={selected}/>
+                                    {/* <p>Размеры в наличии: <span className="catalog-item-size selected">18 US</span> <span className="catalog-item-size">20 US</span></p> */}
+                                    <Quantity amount={quantity} handleIncrease={handleIncrease} handleReduce={handleReduce}/>
+                                    {/* <p>Количество: <span className="btn-group btn-group-sm pl-2">
                                             <button className="btn btn-secondary">-</button>
                                             <span className="btn btn-outline-primary">1</span>
                                             <button className="btn btn-secondary">+</button>
-                                        </span>
-                                    </p>
+                                        </span> */}
+                                    {/* </p> */}
                                 </div>
                                 <button className="btn btn-danger btn-block btn-lg">В корзину</button>
                             </div>
