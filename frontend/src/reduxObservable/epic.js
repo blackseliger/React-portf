@@ -1,6 +1,7 @@
 import { combineEpics } from 'redux-observable';
 import { catalog } from './catalog';
 import { categories } from './categories';
+import { itemProduct } from './itemproduct/itemproduct';
 import { topSalesfetchRequest } from './topsales';
 
 
@@ -9,6 +10,7 @@ import { topSalesfetchRequest } from './topsales';
     topSalesfetchRequest,
     catalog,
     categories,
+    itemProduct,
 );
 
 

@@ -29,6 +29,7 @@ export default function catalogReducer(state = initialState, action) {
             return {
                 ...state,
                 items: offSet ? state.items : [],
+                // проверка чтоб не накапливался повторами постояно при нажатии кнопки "еще" 
                 loading: true,
                 error: null,
         };
@@ -38,7 +39,7 @@ export default function catalogReducer(state = initialState, action) {
                 ...state,
                 items: [...state.items, ...items],
                 actualCount: items.length,
-                //  items.length  items берется из payload, однако :o => приходит либо 6 либо меньше 6
+                //  items.length  items берется из payload => приходит либо 6 либо меньше 6
                 loading: false,
                 error: null, 
             }

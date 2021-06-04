@@ -11,7 +11,7 @@ export const categories = action$ => action$.pipe(
     exhaustMap(() => ajax.getJSON(`${process.env.REACT_APP_API_URL}/categories`).pipe(
         retry(5),
         map((items) => fetchCategoriesSuccess(items)),
-        catchError((e) => of(fetchCatalogFailure)),
+        catchError((e) => of(fetchCategoriesFailure)),
     ))
 );
 

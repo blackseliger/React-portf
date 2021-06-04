@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Image from '../Image/Image';
+import { Link } from 'react-router-dom';
 
 
 function Card({item, cataLogStyle}) {
@@ -13,7 +14,7 @@ function Card({item, cataLogStyle}) {
                 <div className="card-body">
                     <p className="card-text" style={{minHeight: '3em'}}>{title}</p>
                     <p className="card-text">{price} руб.</p>
-                    <a href="/products/1.html" className="btn btn-outline-primary">Заказать</a>
+                    <Link to={`/catalog/${id}`} className="btn btn-outline-primary">Заказать</Link>
                 </div> 
         </div>
     )
