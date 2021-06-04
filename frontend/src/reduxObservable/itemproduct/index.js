@@ -15,7 +15,6 @@ export default function itemProductReducer(state = initialState, action) {
         case FETCH_ITEM_PRODUCT_REQUEST:
             return {
                 ...state,
-                items: null,
                 loading: true,
                 error: null,
             }

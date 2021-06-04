@@ -7,14 +7,40 @@ import Loader from '../Loader/Loader';
 function ItemProduct({productID}) {
     const { items , loading, error } = useSelector((state) => state.itemProduct);
     console.log(productID);
+    // console.log(items.images[0]);
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(fetchItemProductRequest(productID));
         console.log(items);
-    }, [dispatch]);
+    }, [dispatch, productID]);
 
-
+    const product_params = [
+    {
+        key: items.sku,
+        name: 'Артикул'
+    },
+    {
+        key: items.manufacturer,
+        name: 'Производитель',
+    },
+    {
+        key:  items.color,
+        name: 'Цвет',
+    },
+    {
+        key: items.material,
+        name: 'Материал',
+    },
+    {
+        key:  items.season,
+        name: 'Сезон',
+    },
+    {
+        key: 'Прогулка',
+        name: 'Повод',
+    }
+]
 
 
     return (
@@ -22,41 +48,23 @@ function ItemProduct({productID}) {
         <section classNameName="catalog-item">
                 {(loading || error ) && <Loader/>}
                 {/* добавить заглушку если ошибка, типа " Ой что то сломалось, обновите" */}
-                {(!loading && !error) &&
+                {(!loading && !error ) &&
                 <>
                         <h2 className="text-center">{items.title}</h2>
                         <div className="row">
                             <div className="col-5">
-                                <img src={items.images[0]}
+                                <img src={items.images[0] || ''}
                                     className="img-fluid" alt={items.title}/>
                             </div>
                             <div className="col-7">
                                 <table className="table table-bordered">
                                     <tbody>
-                                        <tr>
-                                            <td>Артикул</td>
-                                            <td>1000046</td>
+                                    {product_params.map((o) => (
+                                        <tr key={o.name}>
+                                            <td>{o.name}</td>
+                                            <td>{o.key}</td>
                                         </tr>
-                                        <tr>
-                                            <td>Производитель</td>
-                                            <td>PAUL ANDREW</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Цвет</td>
-                                            <td>Чёрный</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Материалы</td>
-                                            <td>Кожа</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Сезон</td>
-                                            <td>Лето</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Повод</td>
-                                            <td>Прогулка</td>
-                                        </tr>
+                                    ))}
                                     </tbody>
                                 </table>
                                 <div className="text-center">
