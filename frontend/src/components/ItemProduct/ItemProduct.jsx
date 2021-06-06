@@ -98,7 +98,7 @@ function ItemProduct({productID}) {
                                         </span> */}
                                     {/* </p> */}
                                 </div>
-                                <button className="btn btn-danger btn-block btn-lg">В корзину</button>
+                                {(available.length > 0) && <button className="btn btn-danger btn-block btn-lg">В корзину</button>}
                             </div>
                         </div>
                 </>
