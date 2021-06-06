@@ -22,9 +22,11 @@ function ItemProduct({productID}) {
 
     const handleSize = (actualSizeIndx) => itemProductSelected(actualSizeIndx);
 
-    const handleIncrease = () => dispatch(itemProductQuantity(quantity + 1))
-    const handleReduce = () => dispatch(itemProductQuantity(quantity === 0 ? 0 : quantity - 1))
+    const handleIncrease = () => dispatch(itemProductQuantity(quantity === 10 ? 10 : quantity + 1))
+    const handleReduce = () => dispatch(itemProductQuantity(quantity === 1 ? 1 : quantity - 1))
 
+    const available = items !== null  && items.sizes.filter((av) => av.avalible);
+    
 
 
     const product_params = items !== null && [
@@ -80,9 +82,15 @@ function ItemProduct({productID}) {
                                     </tbody>
                                 </table>
                                 <div className="text-center">
-                                    <Sizes data={items.sizes} onClick={handleSize} selected={selected}/>
+                                    {(available.length === 0) ? <p>Нет в наличии</p> : 
+                                        <>
+                                        <Sizes data={available} onClick={handleSize} selected={selected}/>
+                                        <Quantity amount={quantity} handleIncrease={handleIncrease} handleReduce={handleReduce}/>
+                                        </>
+                                    }
+                                    {/* <Sizes data={items.sizes} onClick={handleSize} selected={selected}/> */}
                                     {/* <p>Размеры в наличии: <span className="catalog-item-size selected">18 US</span> <span className="catalog-item-size">20 US</span></p> */}
-                                    <Quantity amount={quantity} handleIncrease={handleIncrease} handleReduce={handleReduce}/>
+                                    {/* <Quantity amount={quantity} handleIncrease={handleIncrease} handleReduce={handleReduce}/> */}
                                     {/* <p>Количество: <span className="btn-group btn-group-sm pl-2">
                                             <button className="btn btn-secondary">-</button>
                                             <span className="btn btn-outline-primary">1</span>
