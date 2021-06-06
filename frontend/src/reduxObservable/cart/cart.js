@@ -21,7 +21,7 @@ export default function cartReducer(state = initialState, action) {
       return [
         ...state,
         {
-          item: { ...item, key: `${item.id}/${item.size}` },
+          item: { ...item, key: `${item.id}:${item.size}` },
           quantity,
         },
       ];
