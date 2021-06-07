@@ -7,7 +7,7 @@ import {
 
 // const locatStorageSet = (obj) => localStorage.setItem('cart', JSON.stringify(obj));
 
-const initialState = (localStorage.getItem('cart')) || [];
+const initialState = JSON.parse(localStorage.getItem('cart')) || [];
 
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
