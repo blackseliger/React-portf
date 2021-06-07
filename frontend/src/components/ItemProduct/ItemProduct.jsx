@@ -5,13 +5,16 @@ import { fetchItemProductRequest, itemProductQuantity, itemProductSelected } fro
 import Loader from '../Loader/Loader';
 import Sizes from '../Sizes/Sizes';
 import Quantity from '../Quantity/Quantity';
+import { cartAdd } from '../../reduxObservable/cart/actionCreators';
+import { useHistory } from 'react-router';
 
 function ItemProduct({productID}) {
     const { items, loading, error, selected, quantity } = useSelector((state) => state.itemProduct);
     console.log(productID);
     console.log(items);
 
-    // console.log(items.images[0]);
+    const history = useHistory();
+
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -22,12 +25,20 @@ function ItemProduct({productID}) {
 
     const handleSize = (actualSizeIndx) => itemProductSelected(actualSizeIndx);
 
-    const handleIncrease = () => dispatch(itemProductQuantity(quantity === 10 ? 10 : quantity + 1))
-    const handleReduce = () => dispatch(itemProductQuantity(quantity === 1 ? 1 : quantity - 1))
+    const handleIncrease = () => dispatch(itemProductQuantity(quantity === 10 ? 10 : quantity + 1));
+    const handleReduce = () => dispatch(itemProductQuantity(quantity === 1 ? 1 : quantity - 1));
+
+    const handleAddItem = () => {
+        dispatch(cartAdd({
+            item: {...items, size: items.sizes[selected].size},
+            quantity,
+        }))
+        history.push('/cart')
+        console.log(items.sizes[selected].size);
+    }
 
     const available = items !== null  && items.sizes.filter((av) => av.avalible);
     
-
 
     const product_params = items !== null && [
     {
@@ -89,7 +100,7 @@ function ItemProduct({productID}) {
                                         </>
                                     }
                                 </div>
-                                {(available.length > 0) && <button className="btn btn-danger btn-block btn-lg">В корзину</button>}
+                                {(available.length > 0) && <button  onClick={handleAddItem} className="btn btn-danger btn-block btn-lg">В корзину</button>}
                             </div>
                         </div>
                 </>

@@ -10,6 +10,7 @@ import About from './pages/About';
 import Contacts from './pages/Contacts';
 import Footer from './components/Footer/Footer';
 import ItemProductPage from './pages/ItemProductPage';
+import ShoppingCart from './pages/ShoppingCart';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
                 <Route exact path='/' component={Main}/>
                 <Route exact path='/catalog' component={CatalogPage}/>
                 <Route exact path='/catalog/:id([0-9]+)?' component={ItemProductPage}/>
+                <Route exact path='/cart'  component={ShoppingCart}/>
                 <Route exact path='/about' component={About}/>
                 <Route exact path='/contacts' component={Contacts}/>
                 <Route component={404}/>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCatalogRequest } from '../../reduxObservable/catalog/actionCreators';
 import Search from '../Search/Search';
 import { searchVisibilityCatalog } from '../../reduxObservable/search/actionCreators';
+import CartImg from '../CartImg/CartImg';
 
 export default function Header(props) {
 
@@ -56,10 +57,7 @@ export default function Header(props) {
                                     <div data-id="search-expander" className="header-controls-pic header-controls-search" 
                                         onClick={showInput} 
                                     ></div>
-                                    <div className='header-controls-pic header-controls-cart'>
-                                        <div className='header-controls-cart-full'></div>
-                                        <div className='header-controls-cart-menu'></div>
-                                    </div>
+                                <CartImg/>
                                 </div>
 
                                 <Search onSubmit={handleSearch} dataId={'search-form'} className={`header-controls-search-form form-inline ${visibleInput ? '' : 'invisible'}`}/> 

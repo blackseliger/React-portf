@@ -3,6 +3,7 @@ import { cart } from './cart';
 import { catalog } from './catalog';
 import { categories } from './categories';
 import { itemProduct } from './itemproduct/itemproduct';
+import { order } from './order';
 import { topSalesfetchRequest } from './topsales';
 
 
@@ -13,6 +14,7 @@ import { topSalesfetchRequest } from './topsales';
     categories,
     itemProduct,
     cart,
+    order,
 );
 
 

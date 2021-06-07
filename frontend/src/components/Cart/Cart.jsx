@@ -1,11 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
+import { cartRemove } from '../../reduxObservable/cart/actionCreators';
 
 function Cart(props) {
 
     const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
+
+    const removeItem = (key) => dispatch(cartRemove(key));
 
     return (
         <section className="cart">
@@ -26,7 +30,7 @@ function Cart(props) {
               {cart.map((o, index) => (
                 <tr key={o.item.key}>
                   <th scope="row">{index + 1}</th>
-                  <td><a href={`/products/${o.item.id}`}>{o.item.title}</a></td>
+                  <td><Link to={`/catalog/${o.item.id}`}>{o.item.title}</Link></td>
                   <td>{o.item.size}</td>
                   <td>{o.quantity}</td>
                   <td>{`${o.item.price} руб.`}</td>
@@ -35,6 +39,7 @@ function Cart(props) {
                     <button
                       type="button"
                       className="btn btn-outline-danger btn-sm"
+                      onClick={() => removeItem(o.item.key)}
                     >
                       Удалить
                     </button>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 
+
 const divStyle = {
     width: '100%',
     height: '0',
@@ -58,6 +59,10 @@ function Image({ title, images }) {
 Image.propTypes = {
     title: PropTypes.string.isRequired,
     images: PropTypes.arrayOf(PropTypes.string).isRequired,
+}
+
+Image.defaultProps = {
+  images: ['/img/placeholder.png', '/img/placeholder.png']
 }
 
 export default Image
