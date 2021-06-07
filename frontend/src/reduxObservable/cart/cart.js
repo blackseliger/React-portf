@@ -5,6 +5,8 @@ import {
 } from './actionTypes';
 
 
+// const locatStorageSet = (obj) => localStorage.setItem('cart', JSON.stringify(obj));
+
 const initialState = (localStorage.getItem('cart')) || [];
 
 export default function cartReducer(state = initialState, action) {
