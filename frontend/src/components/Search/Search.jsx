@@ -29,7 +29,6 @@ function Search({className, onSubmit, dataID = ""}) {
       <form className={className} data-id={dataID} onSubmit={handleSubmit}>
           {dataID !== null ? 
                <input className='form-control' placeholder='Поиск' value={searchStr} onChange={handleChange} ref={searchInput} /> :
-            //    разница вызова через Header и Catalog подумать как лучше провернуть 
                <input className='form-control' placeholder='Поиск' value={searchStr} onChange={handleChange} />
         }
       </form>

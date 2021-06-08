@@ -46,7 +46,7 @@ function Order(props) {
         {(!loading && !error && success) && 
             <h3  className="text-center">Заказ оформлен!</h3>
         }
-        {(!loading && !error & !success && cart.length > 0) &&
+        {(!loading && !error & !success && cart !== null && cart.length > 0) &&
             <section className="order">
             <h2 className="text-center">Оформить заказ</h2>
             <div className="card" style={{ maxWidth: '30rem', margin: '0 auto' }}>

@@ -9,12 +9,14 @@ import {
 // const locatStorageSet = (obj) => localStorage.setItem('cart', JSON.stringify(obj));
 
 const initialState = JSON.parse(localStorage.getItem('cart')) || [];
+// const initialState = (JSON.parse(localStorage.getItem('cart')) === undefined) ? [] : JSON.parse(localStorage.getItem('cart'))
 console.log(initialState);
 
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case CART_ADD: {
       const { item, quantity } = action.payload;
+      console.log(state);
       const duplicate = state.find((o) => (o.item.id === item.id) && (o.item.size === item.size));
       if (duplicate) {
         return state.map((o) => {

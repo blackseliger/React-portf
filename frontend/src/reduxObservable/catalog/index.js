@@ -16,7 +16,7 @@ export const catalog = action$ => action$.pipe(
         const urlParams = new URLSearchParams();
         if (categoryID) urlParams.set('categoryId', categoryID);
         if (offSet) urlParams.set('offset', offSet);
-        if (q) urlParams.set('q', q);
+        if (q && (q !== '')) urlParams.set('q', q);
         return ajax.getJSON(`${process.env.REACT_APP_API_URL}/items?${urlParams.toString()}`).pipe(
             retry(5),
             map((o) => fetchCatalogSuccess(o)),

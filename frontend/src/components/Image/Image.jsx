@@ -49,6 +49,7 @@ function Image({ title, images }) {
                     // не работает?........
                     onMouseEnter={handleMouseNext}
                     onMouseLeave={handleMousePrev}
+                    onError={(e) => {e.target.oneerror = null; e.target.src='/img/placeholder.png' }}
               />
             </div>
           )}  

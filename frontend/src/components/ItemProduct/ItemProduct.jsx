@@ -79,7 +79,7 @@ function ItemProduct({productID}) {
                         <div className="row">
                             <div className="col-5">
                                 <img src={items.images[0] || ''}
-                                    className="img-fluid" alt={items.title}/>
+                                    className="img-fluid" alt={items.title}  onError={(e) => {e.target.oneerror = null; e.target.src='/img/placeholder.png' }}/>
                             </div>
                             <div className="col-7">
                                 <table className="table table-bordered">

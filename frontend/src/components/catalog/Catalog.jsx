@@ -38,6 +38,7 @@ function Catalog(props) {
         dispatch(fetchCatalogRequest({
             categoryId: actualCategory,
             offSet: items.length,
+            q: searchStr.trim(),
         }))
     }
 

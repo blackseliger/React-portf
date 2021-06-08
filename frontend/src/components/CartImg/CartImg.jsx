@@ -11,7 +11,7 @@ function CartImg(props) {
     return (
         <Link to="/cart">
         <div className="header-controls-pic header-controls-cart">
-          {(cart.length > 0) && <div className="header-controls-cart-full">{cart.length}</div>}
+          {(cart !== null && cart.length > 0) && <div className="header-controls-cart-full">{cart.length}</div>}
           <div className="header-controls-cart-menu" />
         </div>
       </Link>
