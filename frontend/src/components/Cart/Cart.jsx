@@ -12,8 +12,6 @@ function Cart(props) {
     const removeItem = (key) => dispatch(cartRemove(key));
 
     return (
-      <>
-      {(cart !== null) &&
         <section className="cart">
         <h2 className="text-center">Корзина</h2>
         <table className="table table-bordered">
@@ -55,9 +53,7 @@ function Cart(props) {
           </tbody>
         </table>
       </section>
-        }
-    </>
-      );
+        );
     }
 
 Cart.propTypes = {

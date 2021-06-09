@@ -1,5 +1,6 @@
 import { 
     ORDER_AGREEMENT, 
+    ORDER_DEFAULT, 
     ORDER_INPUT_ADDRESS, 
     ORDER_INPUT_PHONE, 
     ORDER_SUBMIT_FAILURE, 
@@ -57,6 +58,13 @@ export function orderReducer(state = initialState, action) {
                 ...state, 
                 loading: false,
                 error
+            }
+        case ORDER_DEFAULT:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                success: false,
             }
         default: 
             return state;

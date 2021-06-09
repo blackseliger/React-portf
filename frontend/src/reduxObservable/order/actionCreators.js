@@ -5,7 +5,8 @@ import {
     ORDER_INPUT_PHONE,
     ORDER_SUBMIT_FAILURE,
     ORDER_SUBMIT_SUCCESS,
-    ORDER_SUBMIT_REQUEST 
+    ORDER_SUBMIT_REQUEST,
+    ORDER_DEFAULT
 } from "./actionTypes";
 
 
@@ -31,4 +32,8 @@ export const orderSubmitSuccess = () => ({
 
 export const orderSubmitFailure = (error) => ({
     type: ORDER_SUBMIT_FAILURE, payload: error,
+})
+
+export const orderDefault = () => ({
+    type: ORDER_DEFAULT, 
 })

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
-import { orderAgrement, orderInputAddress, orderInputPhone, orderSubmitRequest } from '../../reduxObservable/order/actionCreators';
+import { orderAgrement, orderDefault, orderInputAddress, orderInputPhone, orderSubmitRequest } from '../../reduxObservable/order/actionCreators';
 import { cartRemoveAll } from '../../reduxObservable/cart/actionCreators';
 import Loader from '../Loader/Loader';
 
@@ -36,7 +36,10 @@ function Order(props) {
     };
 
     useEffect(() => {
-        if (success) dispatch(cartRemoveAll());
+        if (success) {
+            dispatch(cartRemoveAll())
+            dispatch(orderDefault())
+        }
     }, [success]);
 
 
@@ -46,7 +49,7 @@ function Order(props) {
         {(!loading && !error && success) && 
             <h3  className="text-center">Заказ оформлен!</h3>
         }
-        {(!loading && !error & !success && cart !== null && cart.length > 0) &&
+        {(!loading && !error && !success && cart.length > 0) &&
             <section className="order">
             <h2 className="text-center">Оформить заказ</h2>
             <div className="card" style={{ maxWidth: '30rem', margin: '0 auto' }}>
