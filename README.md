@@ -29,9 +29,9 @@ const fortune = (ctx, body = null, status = 200) => {
 }
 ```
 
-Запускать backend сервер нужно командой `npm run watch` (не забудьте сначала сделать `npm install`) - тогда он запустится в режиме live-reload.
+Запускать backend (каталог backend) сервер нужно командой `npm run watch` (не забудьте сначала сделать `npm install`) - тогда он запустится в режиме live-reload.
 
-Для работы с ffrontend частью, необходимо сначала сделать `npm install` и позже сделать `npm start`.
+Для работы с frontend частью (каталог frontend), необходимо сначала сделать `npm install` и позже сделать `npm start`.
 
 Для хранения состояния корзины и побочных эффектов использована - Redux + Redux Observable
 
