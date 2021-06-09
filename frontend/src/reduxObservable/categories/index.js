@@ -4,7 +4,6 @@ import { map, retry, catchError, exhaustMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { FETCH_CATEGORIES_REQUEST } from './actionTypes';
 import { fetchCategoriesFailure, fetchCategoriesSuccess } from './actionCreators';
-import { fetchCatalogFailure } from '../catalog/actionCreators';
 
 export const categories = action$ => action$.pipe(
     ofType(FETCH_CATEGORIES_REQUEST),

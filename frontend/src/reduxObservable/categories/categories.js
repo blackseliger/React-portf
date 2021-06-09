@@ -1,6 +1,5 @@
-import { FETCH_CATALOG_REQUEST } from '../catalog/actionTypes';
+
 import {
-    ACTUAL_CATEGORIES_ID,
     FETCH_CATEGORIES_FAILURE,
     FETCH_CATEGORIES_REQUEST,
     FETCH_CATEGORIES_SUCCESS,
@@ -10,7 +9,6 @@ const initialState = {
     items: [],
     loading: false,
     error: null,
-    // id: null,
 };
 
 export default function categoriesReducer(state = initialState, action) {

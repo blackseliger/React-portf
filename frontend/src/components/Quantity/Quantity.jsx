@@ -15,7 +15,9 @@ function Quantity({amount, handleIncrease, handleReduce}) {
 }
 
 Quantity.propTypes = {
-
+    amount: PropTypes.number.isRequired,
+    handleIncrease: PropTypes.func.isRequired,
+    handleReduce: PropTypes.func.isRequired,
 }
 
 export default Quantity

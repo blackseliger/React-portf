@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchItemProductRequest, itemProductQuantity, itemProductSelected } from '../../reduxObservable/itemproduct/actionCreators';
@@ -111,7 +111,7 @@ function ItemProduct({productID}) {
 }
 
 ItemProduct.propTypes = {
-
+    productID: PropTypes.string.isRequired,
 }
 
 export default ItemProduct

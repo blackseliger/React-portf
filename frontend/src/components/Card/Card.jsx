@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 
 
 function Card({item, cataLogStyle}) {
-    const {category, title, price, images, id} = item;
+    const {title, price, images, id} = item;
     console.log(cataLogStyle);
     return (
         <div className={cataLogStyle}>
-            {/* catalog-item-card ломает хит продаж но чиним каталог */}
+            {/* catalog-item-card ломает хит продаж но чинит каталог */}
             <Image title={title} images={images}/>
                 <div className="card-body">
                     <p className="card-text" style={{minHeight: '3em'}}>{title}</p>
@@ -33,6 +33,7 @@ Card.propTypes = {
       price: PropTypes.number.isRequired,
       id: PropTypes.number.isRequired,
     }).isRequired,
+    cataLogStyle: PropTypes.string.isRequired,
   };
   
 

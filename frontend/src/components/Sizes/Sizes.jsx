@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 function Sizes({data, onClick, selected}) {
     console.log(data);

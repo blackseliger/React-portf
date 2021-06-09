@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { actualCategoriesID, fetchCatalogRequest } from '../../reduxObservable/catalog/actionCreators';
 import CardList from '../CardList/CardList';
 import Categories from '../Categories/Categories';
 import Loader from '../Loader/Loader';
-import Search from '../Search/Search';
 import { searchChangeInput } from '../../reduxObservable/search/actionCreators';
-// import { actualCategoriesID } from '../../reduxObservable/categories/actionCreators';
+
 
 function Catalog(props) {
     const { items, loading, error, actualCount, id } = useSelector((state) => state.catalog);
@@ -27,7 +26,7 @@ function Catalog(props) {
         dispatch(actualCategoriesID(actualCategory));
         // приходит с опозданием если юзать любые стейты, быстро работает с исходным аргументом handleClick
         // способ перекидывать categoryId в стейт и потом вытаскивать его и юзать fetchCatalogRequest плохо работает
-        // fetchCatalogRequest берет из стейта состояние которое еще не успело обновится.. нужно понять как исправлять ситуацию
+        // fetchCatalogRequest берет из стейта состояние которое еще не успело обновится
         console.log(id);
         dispatch(fetchCatalogRequest({
             categoryId: categoryId,
@@ -55,9 +54,6 @@ function Catalog(props) {
         dispatch(searchChangeInput(evt.target.value));
     };
  
-    // const classNameSearchCatalog = 'catalog-search-form form-inline';
-
-
     return (
         <>
             <section className="catalog">
@@ -82,10 +78,6 @@ function Catalog(props) {
     )
 }
 
-Catalog.propTypes = {
-    
-
-}
 
 export default Catalog
 

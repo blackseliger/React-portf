@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCategoriesRequest } from '../../reduxObservable/categories/actionCreators';
 import { Link } from 'react-router-dom';
-import { actualCategoriesID } from '../../reduxObservable/catalog/actionCreators';
+
 
 function Categories(props) {
-    const { items, loading, error } = useSelector((state) => state.categories);
+    const { items } = useSelector((state) => state.categories);
     const dispatch = useDispatch();
 
     useEffect(() => {

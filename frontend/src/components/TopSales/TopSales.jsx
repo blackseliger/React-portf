@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch} from 'react-redux';
 import CardList from '../CardList/CardList';
 import { fetchTopSalesRequest } from '../../reduxObservable/topsales/actionCreators';
@@ -14,6 +13,7 @@ function TopSales(props) {
     useEffect(() => {
         dispatch(fetchTopSalesRequest());
         console.log(items);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
     return (

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { cartRemove } from '../../reduxObservable/cart/actionCreators';
@@ -56,9 +55,6 @@ function Cart(props) {
         );
     }
 
-Cart.propTypes = {
-
-}
 
 export default Cart
 

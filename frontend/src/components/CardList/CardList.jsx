@@ -19,7 +19,8 @@ CardList.defaultProps = {
 }
 
 CardList.propTypes = {
-
+  items: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  cataLogStyle: PropTypes.string.isRequired,
 }
 
 

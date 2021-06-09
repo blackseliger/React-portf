@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
 import { orderAgrement, orderDefault, orderInputAddress, orderInputPhone, orderSubmitRequest } from '../../reduxObservable/order/actionCreators';
 import { cartRemoveAll } from '../../reduxObservable/cart/actionCreators';
@@ -40,7 +39,7 @@ function Order(props) {
             dispatch(cartRemoveAll())
             dispatch(orderDefault())
         }
-    }, [success]);
+    }, [dispatch, success]);
 
 
     return (
@@ -56,7 +55,7 @@ function Order(props) {
                 <form className="card-body" onSubmit={handleSumbit}>
                     <div className="form-group">
                         <label htmlFor="phone">Телефон</label>
-                        <input className="form-control" id="phone" type='tel'  required value={phone}  required onChange={handleChangePhone} placeholder="Ваш телефон"/>
+                        <input className="form-control" id="phone" type='tel'  required value={phone} onChange={handleChangePhone} placeholder="Ваш телефон"/>
                     </div>
                     <div classNameName="form-group">
                         <label htmlFor="address">Адрес доставки</label>
